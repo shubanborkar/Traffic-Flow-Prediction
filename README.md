@@ -281,10 +281,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Author**: [Your Name]
-- **Email**: [your.email@example.com]
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **LinkedIn**: [Your LinkedIn Profile]
+- **Author**: Shuban Borkar
+- **Email**: shubanborkar@outlook.com
+- **GitHub**: https://github.com/shubanborkar
+- **LinkedIn**: https://www.linkedin.com/in/shuban-borkar/
 
 ## 🔗 Related Projects
 
@@ -302,4 +302,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **⭐ If you found this project helpful, please give it a star!**
 
-*Last updated: December 2024*
+*Last updated: October 2025*
