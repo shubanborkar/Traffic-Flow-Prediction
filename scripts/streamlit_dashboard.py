@@ -401,7 +401,7 @@ def main():
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
         "Choose a section:",
-        ["Overview", "Dataset Info", "Model Performance", "Architecture", "Visualizations", "Predictions", "Conclusions"]
+        ["Overview", "Dataset Info", "Model Performance", "Architecture", "Predictions", "Conclusions"]
     )
     
     # Display selected page
@@ -442,9 +442,6 @@ def main():
     
     elif page == "Architecture":
         create_model_architecture_section()
-    
-    elif page == "Visualizations":
-        create_data_visualization_section()
     
     elif page == "Predictions":
         create_prediction_demo()
