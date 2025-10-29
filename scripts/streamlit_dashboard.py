@@ -144,39 +144,19 @@ def create_model_performance_section(results):
                 total_models = len(df_metrics)
                 st.metric("Models Trained", total_models)
     
-    # Create performance comparison charts
+    # Display performance metrics table
+    st.markdown("### Performance Metrics")
     if not df_metrics.empty and 'RMSE' in df_metrics.columns:
-        col1, col2 = st.columns(2)
+        # Format the dataframe for better display
+        styled_df = df_metrics.style.format({
+            'RMSE': '{:.4f}',
+            'MAE': '{:.4f}',
+            'R²': '{:.4f}',
+            'Loss': '{:.4f}'
+        }).background_gradient(cmap='RdYlGn_r', subset=['RMSE', 'MAE', 'Loss']) \
+          .background_gradient(cmap='RdYlGn', subset=['R²'])
         
-        with col1:
-            # RMSE Comparison
-            fig_rmse = px.bar(
-                df_metrics, 
-                x='Model', 
-                y='RMSE',
-                title='RMSE Comparison (Lower is Better)',
-                color='RMSE',
-                color_continuous_scale='Reds'
-            )
-            fig_rmse.update_layout(height=400)
-            st.plotly_chart(fig_rmse, use_container_width=True)
-        
-        with col2:
-            # R² Comparison
-            fig_r2 = px.bar(
-                df_metrics, 
-                x='Model', 
-                y='R²',
-                title='R² Score Comparison (Higher is Better)',
-                color='R²',
-                color_continuous_scale='Greens'
-            )
-            fig_r2.update_layout(height=400)
-            st.plotly_chart(fig_r2, use_container_width=True)
-    
-    # Display detailed metrics table
-    st.markdown("### Detailed Performance Metrics")
-    st.dataframe(df_metrics, use_container_width=True)
+        st.dataframe(styled_df, use_container_width=True, height=250)
 
 def create_model_architecture_section():
     """Create model architecture explanation section"""
