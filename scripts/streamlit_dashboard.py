@@ -97,24 +97,19 @@ def create_model_performance_section(results):
     """Create model performance comparison section"""
     st.markdown("## 🤖 Model Performance Comparison")
     
-    # Extract metrics
+    # Extract metrics (exclude Logistic Regression and accuracy-based models)
     models = list(results.keys())
     metrics_data = []
     
     for model in models:
-        if 'rmse' in results[model]:
+        # Only include regression models and exclude Logistic Regression
+        if 'rmse' in results[model] and 'Logistic Regression' not in model:
             metrics_data.append({
                 'Model': model,
                 'RMSE': results[model]['rmse'],
                 'MAE': results[model]['mae'],
                 'R²': results[model]['r2'],
                 'Loss': results[model]['loss']
-            })
-        elif 'accuracy' in results[model]:
-            metrics_data.append({
-                'Model': model,
-                'Accuracy': results[model]['accuracy'],
-                'AUC': results[model]['auc']
             })
     
     df_metrics = pd.DataFrame(metrics_data)
