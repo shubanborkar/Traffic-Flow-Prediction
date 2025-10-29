@@ -43,7 +43,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load data and results
-@st.cache_data
+@st.cache_data(ttl=60)  # Cache for 60 seconds, then reload
 def load_results():
     """Load the results from JSON file"""
     try:
@@ -380,7 +380,7 @@ def main():
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
         "Choose a section:",
-        ["Overview", "Dataset Info", "Model Performance", "Architecture", "Predictions", "Conclusions"]
+        ["Overview", "Dataset Info", "Model Performance", "Architecture", "Conclusions"]
     )
     
     # Display selected page
@@ -421,9 +421,6 @@ def main():
     
     elif page == "Architecture":
         create_model_architecture_section()
-    
-    elif page == "Predictions":
-        create_prediction_demo()
     
     elif page == "Conclusions":
         create_conclusion_section(results)
