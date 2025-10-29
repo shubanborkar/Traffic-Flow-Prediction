@@ -142,16 +142,20 @@ def create_model_performance_section(results):
     # Display performance metrics table
     st.markdown("### Performance Metrics")
     if not df_metrics.empty and 'RMSE' in df_metrics.columns:
+        # Reset index to avoid displaying row numbers as extra column
+        df_display = df_metrics.reset_index(drop=True)
+        
         # Format the dataframe for better display
-        styled_df = df_metrics.style.format({
+        styled_df = df_display.style.format({
             'RMSE': '{:.4f}',
             'MAE': '{:.4f}',
             'R²': '{:.4f}',
             'Loss': '{:.4f}'
         }).background_gradient(cmap='RdYlGn_r', subset=['RMSE', 'MAE', 'Loss']) \
-          .background_gradient(cmap='RdYlGn', subset=['R²'])
+          .background_gradient(cmap='RdYlGn', subset=['R²']) \
+          .hide(axis='index')
         
-        st.dataframe(styled_df, use_container_width=True, height=250)
+        st.dataframe(styled_df, use_container_width=True)
 
 def create_model_architecture_section():
     """Create model architecture explanation section"""
